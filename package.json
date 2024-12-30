@@ -1,0 +1,27 @@
+{
+  "name": "postman-collection-generator",
+  "version": "1.0.0",
+  "description": "Generate postman collection for your routes",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanjar-Rajabov/postman-collection-generator.git"
+  },
+  "keywords": [
+    "postman"
+  ],
+  "author": "Sanjar-Rajabov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanjar-Rajabov/postman-collection-generator/issues"
+  },
+  "homepage": "https://github.com/Sanjar-Rajabov/postman-collection-generator#readme",
+  "dependencies": {
+    "@types/node": "^20.11.21",
+    "reflect-metadata": "^0.2.1",
+    "typescript": "^5.3.3"
+  }
+}
