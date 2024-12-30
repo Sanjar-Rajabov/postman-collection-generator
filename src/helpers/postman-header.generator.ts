@@ -1,5 +1,4 @@
-import {getData} from "../helpers/get-data";
-import {MetadataKeys} from "../enums/metadata-keys";
+import {getData, MetadataKeys} from "..";
 
 export function postmanHeaderGenerator(target: any, key: string) {
   let headers = getData(MetadataKeys.Headers, target, key)

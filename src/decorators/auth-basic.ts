@@ -1,5 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
-import {AuthTypes} from "../enums/auth-types";
+import {MetadataKeys, AuthTypes} from "../";
 
 export function AuthBasic(username: string = '{{username}}', password: string = '{{password}}') {
   return function (target: any, key?: string) {

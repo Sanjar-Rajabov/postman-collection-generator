@@ -1,6 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
-import {AuthTypes} from "../enums/auth-types";
-import {getData} from "../helpers/get-data";
+import {MetadataKeys, AuthTypes, getData} from "..";
 
 export function postmanAuthGenerator(target: any, key?: string) {
   let type: string

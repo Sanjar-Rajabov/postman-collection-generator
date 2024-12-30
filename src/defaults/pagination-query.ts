@@ -1,4 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
+import {MetadataKeys} from "..";
 
 export function PaginationQuery() {
   return function (target: any, key: string) {

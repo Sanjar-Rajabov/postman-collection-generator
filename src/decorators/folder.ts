@@ -1,4 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
+import {MetadataKeys} from "..";
 
 export function Folder(name: string, prefix?: string | null) {
   return function (target: any) {

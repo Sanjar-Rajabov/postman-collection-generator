@@ -1,14 +1,20 @@
-import {Response} from "../decorators/response";
+import {Response} from "..";
 import {getReasonPhrase, StatusCodes} from "http-status-codes";
 
-export function ResponseOk(body: any = null) {
-  return Response([{
+export function ResponseOk(body: any = null, wrap: boolean = true) {
+  let result = {
     name: getReasonPhrase(StatusCodes.OK),
     statusCode: StatusCodes.OK,
-    body: {
+    body: body
+  }
+
+  if (wrap) {
+    result.body = {
       statusCode: StatusCodes.OK,
-      statusDesc: getReasonPhrase(StatusCodes.OK),
+      statusDescription: getReasonPhrase(StatusCodes.OK),
       data: body
     }
-  }])
+  }
+
+  return Response([result])
 }

@@ -1,17 +1,20 @@
 import * as fs from "fs";
-import {MetadataKeys} from "./enums/metadata-keys";
 import {getMetadata, hasMetadata} from "reflect-metadata/no-conflict";
-import {PostmanModel} from "./interfaces/postman.model";
-import {getData} from "./helpers/get-data";
-import {postmanAuthGenerator} from "./generators/postman-auth.generator";
-import {postmanUrlGenerator} from "./generators/postman-url.generator";
-import {postmanBodyGenerator} from "./generators/postman-body.generator";
-import {postmanHeaderGenerator} from "./generators/postman-header.generator";
-import {postmanResponseGenerator} from "./generators/postman-response.generator";
-import {splitCamelCase, ucfirst} from "./helpers/str"
+import {
+  postmanAuthGenerator,
+  postmanUrlGenerator,
+  postmanBodyGenerator,
+  postmanHeaderGenerator,
+  postmanResponseGenerator,
+  postmanDescriptionGenerator,
+  splitCamelCase, ucfirst,
+  getData,
+  MetadataKeys,
+  PostmanModel
+} from "./";
 
 export class Postman {
-  static async generate(controllersPath: string, collection: Array<any>) {
+  static async generate(controllersPath: string, collection: any) {
     const paths = fs.readdirSync(controllersPath)
 
     for (let path of paths) {
@@ -28,10 +31,11 @@ export class Postman {
           }
 
 
-          let folder: { name: string, item: any[], auth: any } = {
+          let folder: { name: string, item: any[], auth: any, description: string } = {
             name: ucfirst(getMetadata(MetadataKeys.PostmanFolder, controller)),
             item: [],
-            auth: postmanAuthGenerator(controller)
+            auth: postmanAuthGenerator(controller),
+            description: postmanDescriptionGenerator(controller)
           }
 
           let properties = Object.getOwnPropertyNames(controller)
@@ -43,9 +47,10 @@ export class Postman {
               let request = {
                 method: this.getMethod(controller, name),
                 header: postmanHeaderGenerator(controller, name),
-                url: postmanUrlGenerator(controller, name),
+                url: postmanUrlGenerator(controller, name, collection.name),
                 auth: postmanAuthGenerator(controller, name),
-                body: postmanBodyGenerator(controller, name)
+                body: postmanBodyGenerator(controller, name),
+                description: postmanDescriptionGenerator(controller, name)
               }
               folder.item.push({
                 name: ucfirst(splitCamelCase(name)),
@@ -55,16 +60,16 @@ export class Postman {
             }
           }
 
-          collection.push(folder)
+          collection.item.push(folder)
         }
       } else if (f.isDirectory()) {
         let folder: PostmanModel = {
           name: ucfirst(path),
           item: []
         }
-        await Postman.generate(`${controllersPath}${path}/`, folder.item)
+        await Postman.generate(`${controllersPath}${path}/`, folder)
 
-        collection.push(folder)
+        collection.item.push(folder)
       }
     }
   }

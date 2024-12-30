@@ -1,4 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
+import {MetadataKeys} from "..";
 
 export function Body(body: object, type: string = 'raw') {
   return function (target: any, key: string) {

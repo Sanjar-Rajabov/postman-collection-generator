@@ -1,4 +1,4 @@
-import {routeBinder} from "./route-binder";
+import {routeBinder} from "..";
 
 const Get = routeBinder('GET')
 const Post = routeBinder('POST')

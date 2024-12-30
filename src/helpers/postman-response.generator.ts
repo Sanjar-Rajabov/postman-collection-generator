@@ -1,6 +1,4 @@
-import {getData} from "../helpers/get-data";
-import {MetadataKeys} from "../enums/metadata-keys";
-import {ResponseModel} from "../interfaces/response.model";
+import {getData, MetadataKeys, ResponseModel} from "..";
 import {getReasonPhrase} from "http-status-codes";
 
 export function postmanResponseGenerator(target: any, key: string, request: object) {

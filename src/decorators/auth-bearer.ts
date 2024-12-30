@@ -1,5 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
-import {AuthTypes} from "../enums/auth-types";
+import {MetadataKeys, AuthTypes} from "..";
 
 export function AuthBearer(bearerToken: string = '{{token}}') {
   return function (target: any, key?: string) {

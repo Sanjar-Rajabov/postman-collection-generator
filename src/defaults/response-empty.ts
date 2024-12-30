@@ -1,4 +1,4 @@
-import {Response} from "../decorators/response";
+import {Response} from "..";
 import {getReasonPhrase, StatusCodes} from "http-status-codes";
 
 export function ResponseEmpty() {

@@ -1,4 +1,4 @@
-import {Response} from "../decorators/response";
+import {Response} from "..";
 import {getReasonPhrase, StatusCodes} from "http-status-codes";
 
 export function ResponseCreated(body: any = null) {
@@ -7,7 +7,7 @@ export function ResponseCreated(body: any = null) {
     statusCode: StatusCodes.CREATED,
     body: {
       statusCode: StatusCodes.CREATED,
-      statusDesc: getReasonPhrase(StatusCodes.CREATED),
+      statusDescription: getReasonPhrase(StatusCodes.CREATED),
       data: body
     }
   }])

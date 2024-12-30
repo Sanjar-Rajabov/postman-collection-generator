@@ -1,4 +1,4 @@
-import {MetadataKeys} from "../enums/metadata-keys";
+import {MetadataKeys} from "..";
 
 export function routeBinder(method: string) {
   return function (path: string, options?: {
@@ -14,7 +14,6 @@ export function routeBinder(method: string) {
         Reflect.defineMetadata(key + '.' + MetadataKeys.Params, options.params, target)
       }
       if (options?.query) {
-        console.log('route binder')
         Reflect.defineMetadata(key + '.' + MetadataKeys.Query, options.query, target)
       }
       if (options?.headers) {
